@@ -1,14 +1,12 @@
 import React,{Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from "./Header";
-import SideBar from "./SideBar";
-import Content from "./Content";
+import SideBar from "../components/SideBar";
+import Content from "../components/Content";
 
-export default class Main extends Component{
+export default class List extends Component{
     render(){
         return(
             <div>
-                <Header/>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-sm-4">

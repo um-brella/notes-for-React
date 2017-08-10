@@ -65,15 +65,16 @@ router.post('/signin',(req,res)=>{
         }
     });
 });
+
 //个人中心页面
 router.get('/signin',(req,res)=>{
-    res.send(req.session.user);
+    res.send({user:req.session.user||{}});
 });
-
 router.get('/signout',(req,res)=>{
     //把session的user属性设置为null就变成了未登录态
     req.session.user=null;
-    res.send('已退出账号');
+    req.flash('success','已退出账号');
+    res.send({'user':{},'success':'已退出账号'});
     //res.redirect('/user/signin');
 });
 

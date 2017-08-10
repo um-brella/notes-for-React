@@ -8,26 +8,20 @@ let session=require('express-session');
 let flash=require('connect-flash');
 //使用mongodb存储会话的中间件，返回一个函数，需要执行，并传入session作为参数
 let MongoStore=require('connect-mongo')(session);
-//跨域
-//导入proxy
-let proxy = require('http-proxy-middleware');
 
-//context可以是单个字符串，也可以是多个字符串数组，分别对应你需要代理的api,星号（*）表示匹配当前路径下面的所有api
-const context = [`/notes/*`];
-
-//options可选的配置参数请自行看readme.md文档，通常只需要配置target，也就是你的api所属的域名。
-const options = {
-    target: 'http://localhost:9090',
-    changeOrigin: true
-};
-
-//将options对象用proxy封装起来，作为参数传递
-const apiProxy = proxy(options);
 
 //执行express方法得到app
 let app=express();
-//现在你只需要执行这一行代码，当你访问需要跨域的api资源时，就可以成功访问到了。
-app.use(context, apiProxy);
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1');
+    res.header('Access-Control-Allow-Credentials',true);
+    if(req.method=="OPTIONS") res.send(200);/*让options请求快速返回*/
+    else  next();
+});
+
 
 
 //把urlencoded格式的字符串转成json对象 req.body=请求体对象
@@ -64,10 +58,10 @@ app.use((req,res,next)=>{
 
 //用户路由
 let user=require('./routes/user');
-app.use('/notes',user);
-//日记路由
+app.use('/user',user);
+/*//日记路由
 let diary=require('./routes/diary');
-app.use('/user',diary);
+app.use('/notes',diary);*/
 /*
 //放首页路由
 let index=require('./routes/index');

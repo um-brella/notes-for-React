@@ -1,5 +1,6 @@
 let path=require('path');
 let HtmlWebpackPlugin=require('html-webpack-plugin');
+
 module.exports={
     //打包的入口文件
     entry:'./notes-React/index.js',
@@ -34,6 +35,7 @@ module.exports={
             }
         ]
     },
+    devtool:'source-map',
     //配置插件
     plugins:[
         //可以以index.html作为模版，并向其中插入打包后的bundle.js文件，然后保存到目标路径下
