@@ -5,14 +5,29 @@ import {
 import List from '../containers/List';
 import {ajax} from '../util';
 import {connect} from 'react-redux';
+import addIdActions from '../store/action/addId';
 import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 
-class Add extends Component{
+class Update extends Component{
+    showNoteWillUpdate = ()=>{
+        ajax({
+            url:'http://localhost:9090/notes/show/'+this.props.showId,
+            method:'GET',
+        }).then((res)=>{
+            this.lastTitle=res.article.title;
+            this.lastContent=res.article.content;
+        },(err)=>{
+            console.log(err);
+        });
+    };
+    componentDidMount(){
+        this.showNoteWillUpdate();
+    };
     handleClick(event){
         event.preventDefault();
         ajax({
-            url:'http://localhost:9090/notes/add',
+            url:'http://localhost:9090/notes/update/'+this.props.showId,
             method:'POST',
             data:JSON.stringify({
                 title:this.refs.title.value,
@@ -26,7 +41,7 @@ class Add extends Component{
             }
             else {
                 this.message = res.error;
-                this.props.history.replace('/add');
+                this.props.history.replace('/update');
             }
         },(err)=>{
             console.log(err);
@@ -42,7 +57,7 @@ class Add extends Component{
                             <div className="panel panel-default">
                                 <div className="panel-heading">
                                     <h3 className="panel-title">
-                                        新增
+                                        修改
                                         <Link to="/list" className="iconfont icon-close navbar-link" style={{float:'right',cursor:'pointer'}}></Link>
                                         <a className="iconfont icon-right navbar-link" style={{float:'right',cursor:'pointer',marginRight:5}} onClick={this.handleClick.bind(this)}></a>
 
@@ -51,9 +66,9 @@ class Add extends Component{
                                 <div className="panel-body">
                                     <div className="input-group">
                                         <span className="input-group-addon" id="basic-addon1">标题</span>
-                                        <input type="text" className="form-control" aria-describedby="basic-addon1" ref='title'/>
+                                        <input type="text" className="form-control" aria-describedby="basic-addon1" defaultValue={this.lastTitle} ref='title'/>
                                     </div>
-                                    <textarea className="form-control" rows="8" style={{marginTop:10}} ref='content'></textarea>
+                                    <textarea className="form-control" rows="8" style={{marginTop:10}} defaultValue={this.lastContent} ref='content'></textarea>
                                 </div>
                             </div>
                         </div>
@@ -64,10 +79,15 @@ class Add extends Component{
         )
     }
 }
-let mapStateToProps=(state)=>({});
-let mapDispatchToProps=(dispatch)=>(
-    bindActionCreators(messageActions,dispatch)
+let mapStateToProps=(state)=>({
+    showId: state.showId.showId
+});
+let mapDispatchToProps=(dispatch)=> (
+    {
+        ...bindActionCreators(addIdActions, dispatch),
+        ...bindActionCreators(messageActions,dispatch)
+    }
 );
 export default connect(
     mapStateToProps,mapDispatchToProps
-)(Add)
+)(Update)

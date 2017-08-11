@@ -59,13 +59,10 @@ app.use((req,res,next)=>{
 //用户路由
 let user=require('./routes/user');
 app.use('/user',user);
-/*//日记路由
-let diary=require('./routes/diary');
-app.use('/notes',diary);*/
-/*
-//放首页路由
-let index=require('./routes/index');
-app.use('/',index);*/
+//笔记路由
+let diary=require('./routes/notes');
+app.use('/notes',diary);
+
 
 //监听9090端口
 app.listen(9090,()=>{

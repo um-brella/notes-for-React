@@ -5,6 +5,7 @@ import {
 import Signin from '../containers/SignIn';
 import Signup from '../containers/SignUp';
 import List from '../containers/List';
+import Update from '../containers/Update';
 import Add from '../containers/Add';
 import {ajax} from '../util';
 import {connect} from 'react-redux';
@@ -91,10 +92,7 @@ class Header extends Component{
 
                             return  <Signin fn={this.checkLogin} {...props}/>
                         }}/>
-                        {/*<Route path="/news/:content" render={*/}
-                            {/*//另一种渲染路由的方式*/}
-                            {/*props=><div>{props.match.params.content}</div>*/}
-                        {/*}/>*/}
+                        <Route path="/update" component={Update}/>
                     </Switch>
                 </div>
             </Router>

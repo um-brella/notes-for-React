@@ -4,7 +4,8 @@
 
 import {combineReducers} from 'redux';
 import sucMsg from './sucMsg';
+import showId from './addId';
 let reducers=combineReducers({
-    sucMsg
+    sucMsg,showId
 });
 export default reducers;

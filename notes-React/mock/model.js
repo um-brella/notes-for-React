@@ -27,12 +27,12 @@ let CategorySchema=new mongoose.Schema({
 let Category=conn.model('Category',CategorySchema);
 exports.Category=Category;
 */
-/*
-//日记的骨架模型
-let DiarySchema=new mongoose.Schema({
+
+//笔记的骨架模型
+let NotesSchema=new mongoose.Schema({
     title:String,
     content:String,
-    picture:Object,
+    localtime:String,
     //文章的分类
     //category:{type:ObjectId,ref:'Category'},
     //创建时间类型是日期类型，默认值是Date.now，default默认值
@@ -42,5 +42,5 @@ let DiarySchema=new mongoose.Schema({
     author:{type:ObjectId,ref:'User'},
     Localtime:String
 });
-let Diary=conn.model('Diary',DiarySchema);
-exports.Diary=Diary;*/
+let Notes=conn.model('Diary',NotesSchema);
+exports.Notes=Notes;
