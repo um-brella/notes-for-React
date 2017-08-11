@@ -15,8 +15,8 @@ class Update extends Component{
             url:'http://localhost:9090/notes/show/'+this.props.showId,
             method:'GET',
         }).then((res)=>{
-            this.lastTitle=res.article.title;
-            this.lastContent=res.article.content;
+            this.refs.title.value=res.article.title;
+            this.refs.content.value=res.article.content;
         },(err)=>{
             console.log(err);
         });
@@ -66,9 +66,9 @@ class Update extends Component{
                                 <div className="panel-body">
                                     <div className="input-group">
                                         <span className="input-group-addon" id="basic-addon1">标题</span>
-                                        <input type="text" className="form-control" aria-describedby="basic-addon1" defaultValue={this.lastTitle} ref='title'/>
+                                        <input type="text" className="form-control" aria-describedby="basic-addon1" ref='title'/>
                                     </div>
-                                    <textarea className="form-control" rows="8" style={{marginTop:10}} defaultValue={this.lastContent} ref='content'></textarea>
+                                    <textarea className="form-control" rows="8" style={{marginTop:10}} ref='content'></textarea>
                                 </div>
                             </div>
                         </div>

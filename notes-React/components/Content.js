@@ -30,12 +30,12 @@ class Content extends Component{
         });
     };
     componentWillReceiveProps(){
-        window.timer=setTimeout(()=>{
+        window.timer1=setTimeout(()=>{
             this.props.showId?this.showNote():null;
         },0);
     };
     componentWillUnmount(){
-        clearTimeout(window.timer);
+        clearTimeout(window.timer1);
     };
     delClick=()=>{
         ajax({
