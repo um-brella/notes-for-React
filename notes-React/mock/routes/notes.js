@@ -83,15 +83,4 @@ router.post('/update/:_id',(req,res)=>{
         }
     })
 });
-/*
-//修改文章
-router.get('/update/:_id',(req,res)=>{
-    let _id=req.params._id;
-    Category.find({user:req.session.user._id},(err,categories)=>{
-        Article.findById(_id).exec((err,article)=>{
-            res.render('article/add',{article,categories,title:'修改文章'});
-        })
-    })
-});
-*/
 module.exports=router;
