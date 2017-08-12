@@ -7,6 +7,7 @@ import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 import Message from '../components/Message';
 
+//主页面组件
 class List extends Component{
     render(){
         return(

@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
+
+//显示成功信息组件
 class Message extends Component{
     render(){
         return(

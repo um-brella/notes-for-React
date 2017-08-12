@@ -12,11 +12,13 @@ import {connect} from 'react-redux';
 import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 
+//头部组件
 class Header extends Component{
     constructor(){
         super();
         this.state = {username: '',avatar:''};
     }
+    //检测登陆
     checkLogin = ()=>{
         ajax({
             url:'http://localhost:9090/user/signin',
@@ -33,6 +35,7 @@ class Header extends Component{
     componentDidMount(){
         this.checkLogin();
     };
+    //退出登陆
     handleClick=()=>{
         ajax({
             url:'http://localhost:9090/user/signout',

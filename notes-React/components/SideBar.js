@@ -8,14 +8,17 @@ import {connect} from 'react-redux';
 import addIdActions from '../store/action/addId';
 import {bindActionCreators} from 'redux';
 
+//显示笔记列表组件
 class SideBar extends Component{
     constructor(){
         super();
         this.state = {notesEle: null};
     };
+    //传输ID
     handleClick(_id){
         this.props.addId(_id);
     };
+    //获取笔记内容
     notesContent = ()=>{
         ajax({
             url:'http://localhost:9090/notes/list',

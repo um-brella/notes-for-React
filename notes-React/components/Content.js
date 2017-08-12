@@ -8,12 +8,13 @@ import {
     HashRouter as Router,Route,Link,withRouter
 } from 'react-router-dom';
 
-
+//笔记内容展示组件
 class Content extends Component{
     constructor(props){
         super(props);
         this.state = {noteEle: null};
     };
+    //展示笔记
     showNote = ()=>{
         ajax({
             url:'http://localhost:9090/notes/show/'+this.props.showId,
@@ -29,6 +30,7 @@ class Content extends Component{
             console.log(err);
         });
     };
+    //当页面数据更改时执行一次
     componentWillReceiveProps(){
         window.timer1=setTimeout(()=>{
             this.props.showId?this.showNote():null;
@@ -37,6 +39,7 @@ class Content extends Component{
     componentWillUnmount(){
         clearTimeout(window.timer1);
     };
+    //点击执行删除笔记事件
     delClick=()=>{
         ajax({
             url:'http://localhost:9090/notes/delete/'+this.props.showId,

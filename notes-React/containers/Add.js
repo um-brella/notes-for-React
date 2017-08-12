@@ -8,7 +8,9 @@ import {connect} from 'react-redux';
 import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 
+//增加笔记组件
 class Add extends Component{
+    //点击提交
     handleClick(event){
         event.preventDefault();
         ajax({

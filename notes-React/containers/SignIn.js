@@ -5,7 +5,9 @@ import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 import {ajax} from '../util';
 
+//登陆组件
 class SignIn extends Component{
+    //表单提交
     HandleSubmit(event){
         event.preventDefault();
         ajax({

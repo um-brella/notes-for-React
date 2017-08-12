@@ -9,7 +9,9 @@ import addIdActions from '../store/action/addId';
 import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 
+//更新笔记组件
 class Update extends Component{
+    //获取具体笔记详细内容
     showNoteWillUpdate = ()=>{
         ajax({
             url:'http://localhost:9090/notes/show/'+this.props.showId,
@@ -24,6 +26,7 @@ class Update extends Component{
     componentDidMount(){
         this.showNoteWillUpdate();
     };
+    //表单提交
     handleClick(event){
         event.preventDefault();
         ajax({

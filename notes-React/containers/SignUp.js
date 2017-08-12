@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import messageActions from '../store/action/success_message';
 import {bindActionCreators} from 'redux';
 
+//注册页面
 class SignUp extends Component {
+    //表单提交
     HandleSubmit(event){
         event.preventDefault();
         let formData = new FormData();
